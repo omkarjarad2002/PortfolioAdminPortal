@@ -1,22 +1,30 @@
 "use client";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
+import { Navigate } from "react-router-dom";
 import swal from "sweetalert";
 
 function Home() {
   const [messages, setMessages] = useState([]);
+  const [id, setId] = useState(null);
 
   const getMessages = async () => {
     try {
       const res = await axios.get(
         "https://portfolioserver-ts4z.onrender.com/getallmessages"
       );
-      console.log(res.data.message);
       setMessages(res.data.message);
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const deleteMsg = async (id: any) => {
+    setId(id);
+    console.log(id);
+    await axios.delete(
+      `https://portfolioserver-ts4z.onrender.com/deleteMSG/${id}`
+    );
   };
 
   useEffect(() => {
@@ -44,10 +52,8 @@ function Home() {
                   </div>
                   <div className="group relative">
                     <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                      <a href="">
-                        <span className="absolute inset-0" />
-                        {message.name}
-                      </a>
+                      <span className="absolute inset-0" />
+                      {message.name}
                     </h3>
                     <p className="mt-5 text-sm text-gray-600">
                       {message.email}
@@ -57,7 +63,12 @@ function Home() {
                     </p>
                     <p className="mt-5 text-sm text-gray-600">{message.msg}</p>
                   </div>
-                  
+                  <button
+                    onClick={() => deleteMsg(message._id)}
+                    className="bg-red-500 hover:bg-red-700 my-2 text-white font-bold py-1 px-4 rounded"
+                  >
+                    Delete
+                  </button>
                 </article>
               ))}
             </div>
