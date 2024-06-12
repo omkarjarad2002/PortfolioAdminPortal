@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import swal from "sweetalert";
 
-function page() {
+function Home() {
   const [messages, setMessages] = useState([]);
 
   const getMessages = async () => {
@@ -67,4 +67,4 @@ function page() {
     </div>
   );
 }
-export default page;
+export default Home;
