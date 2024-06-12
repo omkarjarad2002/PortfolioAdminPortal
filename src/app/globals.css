@@ -5,7 +5,7 @@ html {
   scroll-behavior: smooth;
 }
 body {
-  background-color: #060214;
+  background-color: #f4f3f8;
   overflow-x: hidden;
 }
 body::-webkit-scrollbar {

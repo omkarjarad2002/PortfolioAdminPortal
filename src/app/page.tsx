@@ -89,7 +89,9 @@ function page() {
 
   const getMessages = async () => {
     try {
-      const res = await axios.get("http://localhost:4000/getallmessages");
+      const res = await axios.get(
+        "https://portfolioserver-ts4z.onrender.com/getallmessages"
+      );
       console.log(res.data.message);
       setMessages(res.data.message);
     } catch (error) {
@@ -104,13 +106,12 @@ function page() {
 
   return (
     <div>
-      <h1>Messages</h1>
       <div>
         <div className="bg-white py-24 sm:py-32">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-2xl lg:mx-0">
               <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                Projects
+                Messages
               </h2>
             </div>
             <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
